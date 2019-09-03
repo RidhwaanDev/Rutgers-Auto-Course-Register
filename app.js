@@ -8,12 +8,11 @@ const colors = require('colors');
 3. Input the rest of your information.
 4. Run with node "app.js"
 */
-const sectionNumbers = [ 19];
-const sectionIndexNumbers = [ '12298'];
-const NETID = '';
-const PASSWORD = '';
+const sectionNumbers = [02,04,06,08];
+const sectionIndexNumbers = ['02208','15888','00310','00312']
+const NETID = 'ra754';
+const PASSWORD = 'E$$ence1566';
 const delayBetweenChecks = 2000; //milliseconds
-
 
 function ClassToRegister(url, sectionNumber, sectionIndexNumber, i) {
   this.url = url;
@@ -49,7 +48,6 @@ function getScheduleInfo(course) {
 var bodyHTML = null;
 
       var schedulePage = await browser.newPage();
-
 
       do {
         try {
@@ -170,7 +168,7 @@ function checkAndRegister(html, course) {
             await registerPage.close();
             gotClass=true;
             await browser.close();
-
+            return;
           }
           else{
             console.log(("Registeration error occurred for " + course.sectionIndexNumber + ". Retrying...   " + new Date(Date.now()).toLocaleString()).blue);
