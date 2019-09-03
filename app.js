@@ -105,7 +105,7 @@ function checkAndRegister(html, course) {
   if (html === null) {
     return gotClass;
   }
-
+    let browsers = [];
   //iterate through all open classes
   $('.sectionopen', html).each(function() {
     if ($(this).text() == course.sectionNumber) {
@@ -115,6 +115,7 @@ function checkAndRegister(html, course) {
         puppeteer.launch({
           headless: true
         }).then(async browser => {
+            browsers.push(browser);
           var registerPage = await browser.newPage();
 
           await registerPage.goto('https://sims.rutgers.edu/webreg/', {
@@ -168,6 +169,9 @@ function checkAndRegister(html, course) {
             await registerPage.close();
             gotClass=true;
             await browser.close();
+              browsers.forEach(b) => {
+                await b.close();
+              };
             return;
           }
           else{
