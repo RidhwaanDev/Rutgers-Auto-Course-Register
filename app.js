@@ -10,8 +10,8 @@ const colors = require('colors');
 */
 const sectionNumbers = [02,04,06,08];
 const sectionIndexNumbers = ['02208','15888','00310','00312']
-const NETID = 'ra754';
-const PASSWORD = 'E$$ence1566';
+const NETID = process.env.NETID;
+const PASSWORD = process.env.PASSWD;
 const delayBetweenChecks = 2000; //milliseconds
 
 function ClassToRegister(url, sectionNumber, sectionIndexNumber, i) {
